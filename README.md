@@ -24,3 +24,11 @@ TBD
 ## 3 - Visualization
 
 TBD
+
+# Data
+
+A project is a set of files, as well as any necessary meta-information required to interact with them.
+
+We don't want to replace tools like git or vim (i.e. we don't want to re-build a source control system or an editor), but we also don't want to require people to upload their files over and over as they are editing their HDL files.  I'm not sure how to fulfill both project goals with a web-application, as the web application can't be aware of the local file changes.
+
+
