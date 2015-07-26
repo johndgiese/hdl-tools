@@ -3,6 +3,15 @@
 The first tool we are building will provide some tools to visualize the entity-dependencies
 of HDL projects (initially we are only going to be targeting VHDL).
 
+
+## 0 - Required Tools and build procedure
+i) cabal install alex
+ii) alex Token.x generates Token.hs which contains the lexing functions
+iii) ghc --make Token.hs
+iv) ghc --make VhdlParser.hs
+v) run with the command: ./VhdlParser --path="[VHDL FOLDER PATH]"
+
+
 ## 1 - Develop Test Suite
 
 We want to develop some simple tests for our core parsing algorithm; this will
@@ -19,7 +28,7 @@ Deliverables:
 
 ## 2 - Write the Parser
 
-TBD
+Alex first implementation in Tokens.x. Right now the file is basically just tokenizing any non-whitespace character and providing a alexScanTokens function.
 
 ## 3 - Visualization
 
