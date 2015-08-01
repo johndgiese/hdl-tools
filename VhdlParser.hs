@@ -16,11 +16,11 @@ main = do
       topLevelEntity = justLookup "topLevel" cmds
   filePaths <- getDirectoryContents vhdlFolderPath
   let vhdlFilePaths = zipWith (++) (repeat vhdlFolderPath) $ filter (List.isInfixOf ".vhd") filePaths
-  xs <- sequence $ map readFile vhdlFilePaths
-  let entityLists = map (findEntities . Tokens.alexScanTokens) $ xs
-      entityAssoc = map (\(y:ys)->(y,ys)) $ filter (not . null) $ entityLists
-  putStrLn $ drawTree $ buildTopLevelTree topLevelEntity entityAssoc
-  writeFile (topLevelEntity ++ ".json") $ encode . toJSObject $ entityAssoc
+  vhdlFileContents <- sequence $ map readFile vhdlFilePaths
+  let entityLists = map (findEntities . Tokens.alexScanTokens) $ vhdlFileContents
+      entityAssoc = map (\(parentEntity:childEntities)->(parentEntity, childEntities)) $ filter (not . null) $ entityLists
+      entityTree =  buildTopLevelTree topLevelEntity entityAssoc
+  --writeFile (topLevelEntity ++ ".json") $ encode . toJSObject $ entityAssoc
 
 findEntities :: [String] -> [String]
 findEntities [] = []

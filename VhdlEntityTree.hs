@@ -11,8 +11,8 @@ type Entity = String
 type EntityTree = Tree Entity
 
 buildTopLevelTree :: Entity -> [(Entity,[Entity])] -> Tree Entity
-buildTopLevelTree topEnt entAList = Node topEnt (map (`buildTopLevelTree` entAList) entForest)
+buildTopLevelTree topEnt entityChildren = Node topEnt (map (`buildTopLevelTree` entityChildren) entForest)
     where
         entForest = if (isNothing entLook) then [] else entJust
-        entLook = List.lookup topEnt entAList
+        entLook = List.lookup topEnt entityChildren
         entJust = fromJust entLook
