@@ -1,3 +1,7 @@
+module Json (
+    
+) where
+
 import Text.JSON
 import Data.Tree
 import Data.Maybe
@@ -13,3 +17,4 @@ instance JSON a => JSON (Tree a) where
             oAssocList = fromJSObject o
 
     readJSON _ = Error "Unable to read Tree"
+

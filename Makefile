@@ -23,10 +23,14 @@ Tokens.hs: Tokens.x .cabal-sandbox
 	cabal install alex
 	cabal install json
 
+.PHONY: run
+run: VhdlParser
+	./VhdlParser --path=./example-hdl/I2C/ --topLevel=I2C_topEntity_0
+
 .PHONY: clean
 clean:
-	rm *.o
-	rm *.hi
+	rm -f *.o
+	rm -f *.hi
 	rm -f WebServer
 	rm -f VhdlParser
 	rm -f Tokens.hs
